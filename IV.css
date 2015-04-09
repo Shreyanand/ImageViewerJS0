@@ -91,6 +91,14 @@ body {
   position: relative;
 }
 #divimg{
+	display:block;
+	position: fixed;
+	margin-top:25%;
+	margin-left:40%;
+	z-index:2;
+}
+#divimg1{
+	display:block;
 	position: fixed;
 	margin-top:14%;
 	margin-left:40%;

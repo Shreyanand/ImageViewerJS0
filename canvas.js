@@ -23,8 +23,8 @@ if (file.type.match(imageType)) {
 			  }
  reader.readAsDataURL(file); 
  document.getElementById('mainicon').style.visibility ="hidden";
+ document.getElementById('micon').style.visibility ="hidden";
  document.getElementById('canvas').style.border = "4px solid black ";
- document.body.style.backgroundImage = "url(Icons/h.png)";
  document.getElementById('ff').style.visibility ="hidden";
 } 
 else 
