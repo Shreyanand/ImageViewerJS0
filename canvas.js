@@ -149,15 +149,42 @@ function edit(){
 
 var toggle = true ;
 function negative(){
-	var imgData = ctx.getImageData(0,0,x.width,x.height);
-	var d = imgData.data;
-	for (var i=0; i< d.length; i+=4) {
-    d[i] = 255 - d[i];
-   d[i+1] = 255 - d[i+1];
-   d[i+2] = 255 - d[i+2];
+	imgDataneg = ctx.getImageData(0,0,x.width,x.height);
+	dn = imgDataneg.data;
+ 	   nextTime=0;
+	   delay=1000/600;
+	   curheight = 0;
+	   cw=x.width;
+       ch=x.height;
+
+for (var i=0; i< dn.length; i+=4) {
+    		   dn[i] = 255 - dn[i];
+			   dn[i+1] = 255 - dn[i+1];
+			   dn[i+2] = 255 - dn[i+2];
+			   }
 	
-	}ctx.putImageData(imgData,0,0);
+	  requestAnimationFrame(animate);
+	}
+function animate(time){
+
+    if(time<nextTime){requestAnimationFrame(animate); return;}
+    nextTime=time+delay;
+	
+   
+    for(var x=0;x<cw;x++){
+        var i=(curheight*cw+x)*4;
+        ctx.fillStyle='rgba('+dn[i]+','+dn[i+1]+','+dn[i+2]+','+dn[i+3]/255+')';
+        ctx.fillRect(x,curheight,1,1);
+    }
+
+    if(++curheight<ch){
+        requestAnimationFrame(animate);
+    }else{
+        ctx.putImageData(imgDataneg,0,0);
+    }
+
 }
+
 function grayscale(){
 	var imgData = ctx.getImageData(0,0,x.width,x.height);
 	var d = imgData.data;
